@@ -1,0 +1,145 @@
+Object Data Model for Nudge:
+-----------------------------------
+@Entity
+@Table(name="nudges")
+public class Nudge {
+     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nudgeId")
+    private Long nudgeId;
+    
+    @Column(name = "title")
+    private String title;
+    
+    @Lob
+    @Column(name = "cover", columnDefinition = "LONGBLOB")
+    private byte[] cover;
+    
+    @Column(name = "sendTime")
+    private LocalDateTime sendTime;
+    
+    @Column(name = "description")
+    private String description;
+    
+    @Column(name = "icon")
+    private String icon;
+    
+    @Column(name = "invitation")
+    private String invitation;
+    
+    @ManyToOne
+    @JoinColumn(name = "eventId")
+    private Event event;
+    
+    public Nudge() {
+        super();
+    }
+
+    public Nudge(Long nudgeId, String title, byte[] cover, LocalDateTime sendTime, String description, String icon, String invitation, Event event) {
+        super();
+        this.nudgeId = nudgeId;
+        this.title = title;
+        this.cover = cover;
+        this.sendTime = sendTime;
+        this.description = description;
+        this.icon = icon;
+        this.invitation = invitation;
+        this.event = event;
+    }
+
+    public Long getNudgeId() {
+        return nudgeId;
+    }
+
+    public void setNudgeId(Long nudgeId) {
+        this.nudgeId = nudgeId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public byte[] getCover() {
+        return cover;
+    }
+
+    public void setCover(byte[] cover) {
+        this.cover = cover;
+    }
+
+    public LocalDateTime getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(LocalDateTime sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getInvitation() {
+        return invitation;
+    }
+
+    public void setInvitation(String invitation) {
+        this.invitation = invitation;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+}
+
+-----------------------------------
+CRUD Functionality API Documentation:
+Base URL: http://yourdomain.com/api/v1
+
+API Endpoints:
+
+Create Nudge: POST /nudges
+Read Nudge: GET /nudges/{nudgeId}
+Update Nudge: PUT /nudges/{nudgeId}
+Delete Nudge: DELETE /nudges/{nudgeId}
+/------------------------------------------------------------------------/
+Create Nudge:
+{
+    "title": "Birthday Party Reminder",
+    "cover": "base64encodedstring",
+    "sendTime": "2023-05-05T10:00:00",
+    "description": "Don't forget to join us for the birthday party!",
+    "icon": "birthday-icon.png",
+    "invitation": "Join Us!",
+    "eventId": 1
+}
+/*------------------------------------------------------*/
+Update Nudge:
+---------------
+{
+    "title": "Birthday Party Reminder (Updated)",
+    "cover": "base64encodedstring",
+    "sendTime": "2023-05-05T12:00
+}
+-------------
